@@ -3,12 +3,34 @@ import PropTypes from 'prop-types';
 import queryStirng from 'query-string';
 import {Link} from 'react-router-dom';
 import api from '../utils/api';
+import PlayerPreview from './PlayerPreview';
+
+const Profile = (props) => {
+    let info = props.info;
+    return (
+        <PlayerPreview avatar={info.avatar_url} username={info.login}>
+            <ul className='space-list-items'>
+                {info.name && <li>{info.name}</li>}
+                {info.location && <li>{info.location}</li>}
+                {info.company && <li>{info.company}</li>}
+                <li>Followers: {info.followers}</li>
+                <li>Following: {info.following}</li>
+                <li>Public Repos: {info.public_repos}</li>
+                {info.blog && <li><a href={info.blog}>{info.blog}</a></li>}
+            </ul>
+        </PlayerPreview>
+    )
+}
+Profile.PropTypes = {
+    info: PropTypes.object.isRequired
+}
 
 const Player = (props) => {
     return (
         <div>
             <h1 className='header'>{props.label}</h1>
             <h3 style={{textAlign: 'center'}}>Score: {props.score}</h3>
+            <Profile info={props.profile}/>
         </div>
     )
 }
@@ -59,7 +81,6 @@ class Results extends React.Component {
         let winner = this.state.winner;
         let loser = this.state.loser;
         let loading = this.state.loading;
-        console.log(loading);
         if (loading === true) {
             return (
                 <div>
