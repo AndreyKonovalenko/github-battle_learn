@@ -17,15 +17,15 @@ function getRepos (username) {
 
 function getStarCount (repos) {
     return repos.data.reduce((count, repo) => {
+        console.log(repo);
         return count + repo.stargazers_count;
     }, 0);
-
 }
 
 function calculateScore (profile, repos) {
     let followers = profile.followers;
     let totalStars = getStarCount(repos);
-
+    console.log(totalStars);
     return (followers * 2) + totalStars;
 }
 
