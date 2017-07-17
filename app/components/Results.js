@@ -4,6 +4,7 @@ import queryStirng from 'query-string';
 import {Link} from 'react-router-dom';
 import api from '../utils/api';
 import PlayerPreview from './PlayerPreview';
+import Loading from './Loading';
 
 const Profile = (props) => {
     let info = props.info;
@@ -21,7 +22,7 @@ const Profile = (props) => {
         </PlayerPreview>
     )
 }
-Profile.PropTypes = {
+Profile.propTypes = {
     info: PropTypes.object.isRequired
 }
 
@@ -34,7 +35,7 @@ const Player = (props) => {
         </div>
     )
 }
-Player.PropTypes = {
+Player.propTypes = {
     label: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
     profile: PropTypes.object.isRequired
@@ -82,13 +83,7 @@ class Results extends React.Component {
         let loser = this.state.loser;
         let loading = this.state.loading;
         if (loading === true) {
-            return (
-                <div>
-                    <p>
-                        loading!
-                    </p>
-                </div>
-            )
+            return <Loading/>
         }
         if (error) {
             return (

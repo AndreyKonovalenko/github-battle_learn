@@ -17,7 +17,7 @@ const PlayerPreview  = (props) => {
     )
 }
 
-PlayerPreview.PropTypes = {
+PlayerPreview.propTypes = {
     avatar: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired
 }
